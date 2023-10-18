@@ -17,19 +17,43 @@ namespace CSharpModule12
 {
     public partial class MainWindow : Window
     {
+        private Client _currentClient;
+        private BankAccount _currentCBankAccount;
+        private Repository _clients;
+        private readonly string path = "clients.json";
         public MainWindow()
         {
             InitializeComponent();
-            List<Client> clients = new List<Client>();
+            _clients = new Repository(path);
 
-            for (int i = 0; i < 5; i++)
+            dataGridClients.ItemsSource = _clients.Clients;
+        }
+
+        private void dataGridClients_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _currentClient = dataGridClients.SelectedItem as Client;
+
+            if (_currentClient.ClientBankAccount != null)
             {
-                clients.Add(new Client($"Имя_{i}", $"Фамилия_{i}"));
+                comboBoxCurrentBankAccount.ItemsSource = _currentClient.ClientBankAccount;
+                comboBoxCurrentBankAccount.SelectedIndex = 0; // выбираем в combo box первый существующий счет
             }
-            clients[0].CreateBankAccount(2000);
-            clients[1].CreateBankAccount(2000);
+        }
 
-            dataGridClients.ItemsSource = clients;
+        private void comboBoxCurrentBankAccount_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (comboBoxCurrentBankAccount.SelectedItem == null)
+            {
+                textBlockCurrentBankAccount.Text = "";
+                return;
+            }
+
+            _currentCBankAccount = comboBoxCurrentBankAccount.SelectedItem as BankAccount;
+            string statucBankAccount = _currentCBankAccount.IsOpen ? "Открыт" : "Закрыт";
+            textBlockCurrentBankAccount.Text = 
+                $"ID: {_currentCBankAccount.Id}\n" +
+                $"Статус: {statucBankAccount}\n" +
+                $"Колличество средств: {_currentCBankAccount.Money}";
         }
     }
 }

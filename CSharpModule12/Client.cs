@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,17 +20,13 @@ namespace CSharpModule12
         {
             _clientId = 0;
         }
+
         public int Id { get; private set; }
-        public List<BankAccount> ClientBankAccount { get; private set; }
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
-
+        public List<BankAccount> ClientBankAccount { get; private set; }
         private static int _clientId;
 
-        public BankAccount this[int index]
-        {
-            get { return this.ClientBankAccount[index]; }
-        }
         public void CreateBankAccount(double money)
         {
             ClientBankAccount.Add(new BankAccount(money));

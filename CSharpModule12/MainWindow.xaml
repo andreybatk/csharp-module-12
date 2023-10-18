@@ -9,35 +9,55 @@
         Background="#FF5D61A2">
     <Window.Resources>
         <SolidColorBrush Color="#FFA3A6DC" x:Key="secondColor"/>
+        <SolidColorBrush Color="White" x:Key="textColor"/>
+        <SolidColorBrush Color="#FFE5E5E5" x:Key="labelColor"/>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="dataGridClients" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"
-                  Margin="0, 5, 5, 5"
-                  Background="{StaticResource ResourceKey = secondColor}">
+        <ListView x:Name="dataGridClients" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3"
+                  Margin="0, 5, 5, 5" SelectionChanged="dataGridClients_SelectionChanged" 
+                  Background="{StaticResource ResourceKey = secondColor}"
+                  ItemsSource="{Binding UpdateSourceTrigger = PropertyChanged}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}" Width="60"/>
                     <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding FirstName}" Width="100"/>
                     <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding LastName}" Width="100"/>
-                    <GridViewColumn Header="Банковский счет" DisplayMemberBinding="{Binding BankAccount}" Width="100"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Grid x:Name="dataGridBankAccounts" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
+        <Grid x:Name="GridBankAccounts" Grid.Row="0" Grid.Column="0"
               Margin ="5, 5, 5, 5"
               Background="{StaticResource ResourceKey = secondColor}">
                 <StackPanel>
-                <TextBlock FontSize="23" Foreground="White">Банковский счет:</TextBlock>
-                <ComboBox></ComboBox>
-                </StackPanel>
+                <TextBlock FontSize="23" Foreground="{StaticResource ResourceKey = textColor}" Text="Банковский счет:"/>
+                <ComboBox x:Name="comboBoxCurrentBankAccount"
+                          DisplayMemberPath="Id"
+                          SelectionChanged="comboBoxCurrentBankAccount_SelectionChanged"
+                          Height ="20"/>
+                <TextBlock FontSize="23" Foreground="{StaticResource ResourceKey = textColor}" Text="Информация по счету:"/>
+                <Label Background="{StaticResource ResourceKey = labelColor}">
+                    <TextBlock x:Name="textBlockCurrentBankAccount" Text=""/>
+                </Label>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="0" Margin ="5, 5, 5, 5"
+               Background="{StaticResource ResourceKey = secondColor}">
+            <StackPanel>
+                <TextBlock FontSize="23" Foreground="{StaticResource ResourceKey = textColor}" Text="Управление счетом:"/>
+                <Button>Открыть/Закрыть счет</Button>
+                <Button>Пополнить счет</Button>
+                <Button>Перевод средств</Button>
+                <Button>Добавить новый счет</Button>
+            </StackPanel> 
         </Grid>
     </Grid>
 </Window>
