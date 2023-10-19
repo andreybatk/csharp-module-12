@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpModule12
+namespace CSharpModule12.Models
 {
     internal class Client
     {

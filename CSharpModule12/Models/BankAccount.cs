@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
-namespace CSharpModule12
+namespace CSharpModule12.Models
 {
-    internal class BankAccount
+    internal class BankAccount : ITransaction<BankAccount>
     {
         public BankAccount(double money)
         {
@@ -30,6 +32,20 @@ namespace CSharpModule12
         public void OpenOrCloseBankAccount(bool isOpen)
         {
             this.IsOpen = isOpen;
+        }
+        public void MoneyTransfer(BankAccount taken, double money)
+        {
+            if(this.Money <= money)
+            {
+                MessageBox.Show("Недостаточно средств!", "Ошибка");
+                return;
+            }
+            this.Money -= money;
+            taken.Money += money;
+        }
+        public void AddMoney(double money)
+        {
+            this.Money += money;
         }
         private static int NextId()
         {

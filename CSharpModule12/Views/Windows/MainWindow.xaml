@@ -1,12 +1,16 @@
-﻿<Window x:Class="CSharpModule12.MainWindow"
+﻿<Window x:Class="CSharpModule12.Views.Windows.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CSharpModule12"
+        xmlns:local="clr-namespace:CSharpModule12.Views.Windows"
+        xmlns:vm="clr-namespace:CSharpModule12.ViewModels"
         mc:Ignorable="d"
         Title="Банк А" Height="600" Width="800"
         Background="#FF5D61A2">
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
     <Window.Resources>
         <SolidColorBrush Color="#FFA3A6DC" x:Key="secondColor"/>
         <SolidColorBrush Color="White" x:Key="textColor"/>
@@ -23,9 +27,8 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <ListView x:Name="dataGridClients" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3"
-                  Margin="0, 5, 5, 5" SelectionChanged="dataGridClients_SelectionChanged" 
-                  Background="{StaticResource ResourceKey = secondColor}"
-                  ItemsSource="{Binding UpdateSourceTrigger = PropertyChanged}">
+                  Margin="0, 5, 5, 5" ItemsSource="{Binding Clients}"
+                  Background="{StaticResource ResourceKey = secondColor}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}" Width="60"/>
@@ -41,7 +44,7 @@
                 <TextBlock FontSize="23" Foreground="{StaticResource ResourceKey = textColor}" Text="Банковский счет:"/>
                 <ComboBox x:Name="comboBoxCurrentBankAccount"
                           DisplayMemberPath="Id"
-                          SelectionChanged="comboBoxCurrentBankAccount_SelectionChanged"
+                          
                           Height ="20"/>
                 <TextBlock FontSize="23" Foreground="{StaticResource ResourceKey = textColor}" Text="Информация по счету:"/>
                 <Label Background="{StaticResource ResourceKey = labelColor}">
@@ -53,10 +56,10 @@
                Background="{StaticResource ResourceKey = secondColor}">
             <StackPanel>
                 <TextBlock FontSize="23" Foreground="{StaticResource ResourceKey = textColor}" Text="Управление счетом:"/>
-                <Button>Открыть/Закрыть счет</Button>
-                <Button>Пополнить счет</Button>
-                <Button>Перевод средств</Button>
-                <Button>Добавить новый счет</Button>
+                <Button x:Name="openCloseBankAccount" Content="Открыть/Закрыть счет"/>
+                <Button x:Name="addMoney" Content="Пополнить счет"/>
+                <Button x:Name="transferMoney" Content="Перевод средств"/>
+                <Button x:Name="addNewBankAccount" Content="Добавить новый счет"/>
             </StackPanel> 
         </Grid>
     </Grid>
