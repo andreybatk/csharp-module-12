@@ -26,8 +26,9 @@
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="dataGridClients" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3"
+        <ListView Grid.Row="0" Grid.Column="1" Grid.RowSpan="3"
                   Margin="0, 5, 5, 5" ItemsSource="{Binding Clients}"
+                  SelectedItem = "{Binding SelectedCurrentClient}"
                   Background="{StaticResource ResourceKey = secondColor}">
             <ListView.View>
                 <GridView>
@@ -37,18 +38,18 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Grid x:Name="GridBankAccounts" Grid.Row="0" Grid.Column="0"
+        <Grid Grid.Row="0" Grid.Column="0"
               Margin ="5, 5, 5, 5"
               Background="{StaticResource ResourceKey = secondColor}">
                 <StackPanel>
                 <TextBlock FontSize="23" Foreground="{StaticResource ResourceKey = textColor}" Text="Банковский счет:"/>
-                <ComboBox x:Name="comboBoxCurrentBankAccount"
-                          DisplayMemberPath="Id"
-                          
+                <ComboBox DisplayMemberPath="Id"
+                          ItemsSource="{Binding BankAccounts}"
+                          SelectedItem="{Binding SelectedCurrentBankAccount}"
                           Height ="20"/>
                 <TextBlock FontSize="23" Foreground="{StaticResource ResourceKey = textColor}" Text="Информация по счету:"/>
                 <Label Background="{StaticResource ResourceKey = labelColor}">
-                    <TextBlock x:Name="textBlockCurrentBankAccount" Text=""/>
+                    <TextBlock Text="{Binding CurrentBankAccountInfo}"/>
                 </Label>
             </StackPanel>
         </Grid>

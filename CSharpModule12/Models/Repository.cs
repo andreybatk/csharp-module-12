@@ -11,16 +11,16 @@ using Newtonsoft.Json;
 
 namespace CSharpModule12.Models
 {
-    internal class Repository : ObservableCollection<Client>
+    internal class Repository<T> where T : class
     {
         public Repository(string path)
         {
             this._path = path;
-            this.Clients = new ObservableCollection<Client>();
+            this.Clients = new ObservableCollection<T>();
             CheckFileExists();
             LoadPersons();
         }
-        public ObservableCollection<Client> Clients { get; private set; }
+        public ObservableCollection<T> Clients { get; private set; }
         private string _path;
 
         public void SavePersons()
@@ -32,13 +32,12 @@ namespace CSharpModule12.Models
         {
             string json = File.ReadAllText(_path, Encoding.UTF8);
 
-            if (string.IsNullOrEmpty(json))
+            if (string.IsNullOrEmpty(json)) 
             {
-                this.Clients.Add(new Client("Example_FirstName", "Example_LastName"));
                 return;
             }
 
-            this.Clients = JsonConvert.DeserializeObject<ObservableCollection<Client>>(json);
+            this.Clients = JsonConvert.DeserializeObject<ObservableCollection<T>>(json);
         }
         private void CheckFileExists()
         {
