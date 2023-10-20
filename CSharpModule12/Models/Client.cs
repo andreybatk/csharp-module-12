@@ -13,10 +13,10 @@ namespace CSharpModule12.Models
     {
         public Client(string firstName, string lastName)
         {
-            this._id = NextId();
-            this._firstName = firstName;
-            this._lastName = lastName;
-            this._clientBankAccounts = new List<BankAccount>();
+            this.Id = NextId();
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.ClientBankAccounts = new ObservableCollection<BankAccount>();
         }
         static Client()
         {
@@ -27,11 +27,11 @@ namespace CSharpModule12.Models
         private int _id;
         private string _firstName;
         private string _lastName;
-        private List<BankAccount> _clientBankAccounts;
+
         public int Id { get => _id; private set => Set(ref _id, value); }
         public string FirstName { get => _firstName; private set => Set(ref _firstName, value); }
         public string LastName { get => _lastName; private set => Set(ref _lastName, value); }
-        public List<BankAccount> ClientBankAccounts { get => _clientBankAccounts; private set => Set(ref _clientBankAccounts, value); }
+        public ObservableCollection<BankAccount> ClientBankAccounts { get; private set; }
 
         public void CreateBankAccount(double money)
         {

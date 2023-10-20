@@ -57,7 +57,7 @@
                Background="{StaticResource ResourceKey = secondColor}">
             <StackPanel>
                 <TextBlock FontSize="23" Foreground="{StaticResource ResourceKey = textColor}" Text="Управление счетом:"/>
-                <Button x:Name="openCloseBankAccount" Content="Открыть/Закрыть счет"/>
+                <Button Content="Открыть/Закрыть счет" Command="{Binding OpenOrCloseBankAccount}"/>
                 <Button x:Name="addMoney" Content="Пополнить счет"/>
                 <Button x:Name="transferMoney" Content="Перевод средств"/>
                 <Button x:Name="addNewBankAccount" Content="Добавить новый счет"/>

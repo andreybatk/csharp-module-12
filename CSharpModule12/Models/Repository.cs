@@ -18,17 +18,17 @@ namespace CSharpModule12.Models
             this._path = path;
             this.Clients = new ObservableCollection<T>();
             CheckFileExists();
-            LoadPersons();
+            Load();
         }
         public ObservableCollection<T> Clients { get; private set; }
         private string _path;
 
-        public void SavePersons()
+        public void Save()
         {
             string json = JsonConvert.SerializeObject(this.Clients, Formatting.Indented);
             File.WriteAllText(_path, json);
         }
-        private void LoadPersons()
+        private void Load()
         {
             string json = File.ReadAllText(_path, Encoding.UTF8);
 

@@ -5,10 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using CSharpModule12.ViewModels.Base;
+using Newtonsoft.Json;
 
 namespace CSharpModule12.Models
 {
-    internal class BankAccount : ITransaction<BankAccount>
+    internal class BankAccount : ViewModel, ITransaction<BankAccount>
     {
         public BankAccount(double money)
         {
@@ -20,18 +22,22 @@ namespace CSharpModule12.Models
         {
             _bankAccountId = 0;
         }
-        public double Money { get; private set; }
-        public int Id { get; private set; }
-        public bool IsOpen { get; private set; }
+        private double _money;
+        private int _id;
+        private bool _isOpen;
         private static int _bankAccountId;
+
+        public double Money { get { return _money; } private set { Set(ref _money, value); } }
+        public int Id { get { return _id; } private set { Set(ref _id, value); } }
+        public bool IsOpen { get { return _isOpen; } private set { Set(ref _isOpen, value); } }
 
         /// <summary>
         /// Открытие/Закрытие счета
         /// </summary>
         /// <param name="isOpen">True - статус открытый; False - статус закрытый;</param>
-        public void OpenOrCloseBankAccount(bool isOpen)
+        public void OpenOrCloseBankAccount()
         {
-            this.IsOpen = isOpen;
+            IsOpen = !IsOpen;
         }
         public void MoneyTransfer(BankAccount taken, double money)
         {
