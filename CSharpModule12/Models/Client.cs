@@ -5,7 +5,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using CSharpModule12.ViewModels.Base;
+using static CSharpModule12.Models.BankAccount;
 
 namespace CSharpModule12.Models
 {
@@ -33,9 +35,11 @@ namespace CSharpModule12.Models
         public string LastName { get => _lastName; private set => Set(ref _lastName, value); }
         public ObservableCollection<BankAccount> ClientBankAccounts { get; private set; }
 
-        public void CreateBankAccount(double money)
+
+        public void CreateBankAccounts(double money)
         {
-            ClientBankAccounts.Add(new BankAccount(money));
+            ClientBankAccounts.Add(new BankAccount(money, AccountType.Deposit));
+            ClientBankAccounts.Add(new BankAccount(money, AccountType.NonDeposit));
         }
         private static int NextId()
         {

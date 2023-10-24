@@ -1,0 +1,382 @@
+[
+  {
+    "Id": 1,
+    "FirstName": "Имя_0",
+    "LastName": "Фамилия_0",
+    "ClientBankAccounts": [
+      {
+        "BankAccountType": "Deposit",
+        "Money": 0.0,
+        "Id": 1,
+        "IsOpen": true
+      },
+      {
+        "BankAccountType": "NonDeposit",
+        "Money": 0.0,
+        "Id": 2,
+        "IsOpen": true
+      }
+    ]
+  },
+  {
+    "Id": 2,
+    "FirstName": "Имя_1",
+    "LastName": "Фамилия_1",
+    "ClientBankAccounts": [
+      {
+        "BankAccountType": "Deposit",
+        "Money": 2000.0,
+        "Id": 3,
+        "IsOpen": true
+      },
+      {
+        "BankAccountType": "NonDeposit",
+        "Money": 2000.0,
+        "Id": 4,
+        "IsOpen": true
+      }
+    ]
+  },
+  {
+    "Id": 3,
+    "FirstName": "Имя_2",
+    "LastName": "Фамилия_2",
+    "ClientBankAccounts": [
+      {
+        "BankAccountType": "Deposit",
+        "Money": 4000.0,
+        "Id": 5,
+        "IsOpen": true
+      },
+      {
+        "BankAccountType": "NonDeposit",
+        "Money": 4000.0,
+        "Id": 6,
+        "IsOpen": true
+      }
+    ]
+  },
+  {
+    "Id": 4,
+    "FirstName": "Имя_3",
+    "LastName": "Фамилия_3",
+    "ClientBankAccounts": [
+      {
+        "BankAccountType": "Deposit",
+        "Money": 6000.0,
+        "Id": 7,
+        "IsOpen": true
+      },
+      {
+        "BankAccountType": "NonDeposit",
+        "Money": 6000.0,
+        "Id": 8,
+        "IsOpen": true
+      }
+    ]
+  },
+  {
+    "Id": 5,
+    "FirstName": "Имя_4",
+    "LastName": "Фамилия_4",
+    "ClientBankAccounts": [
+      {
+        "BankAccountType": "Deposit",
+        "Money": 8000.0,
+        "Id": 9,
+        "IsOpen": true
+      },
+      {
+        "BankAccountType": "NonDeposit",
+        "Money": 8000.0,
+        "Id": 10,
+        "IsOpen": true
+      }
+    ]
+  },
+  {
+    "Id": 6,
+    "FirstName": "Имя_5",
+    "LastName": "Фамилия_5",
+    "ClientBankAccounts": [
+      {
+        "BankAccountType": "Deposit",
+        "Money": 10000.0,
+        "Id": 11,
+        "IsOpen": true
+      },
+      {
+        "BankAccountType": "NonDeposit",
+        "Money": 10000.0,
+        "Id": 12,
+        "IsOpen": true
+      }
+    ]
+  },
+  {
+    "Id": 7,
+    "FirstName": "Имя_6",
+    "LastName": "Фамилия_6",
+    "ClientBankAccounts": [
+      {
+        "BankAccountType": "Deposit",
+        "Money": 12000.0,
+        "Id": 13,
+        "IsOpen": true
+      },
+      {
+        "BankAccountType": "NonDeposit",
+        "Money": 12000.0,
+        "Id": 14,
+        "IsOpen": true
+      }
+    ]
+  },
+  {
+    "Id": 8,
+    "FirstName": "Имя_7",
+    "LastName": "Фамилия_7",
+    "ClientBankAccounts": [
+      {
+        "BankAccountType": "Deposit",
+        "Money": 14000.0,
+        "Id": 15,
+        "IsOpen": true
+      },
+      {
+        "BankAccountType": "NonDeposit",
+        "Money": 14000.0,
+        "Id": 16,
+        "IsOpen": true
+      }
+    ]
+  },
+  {
+    "Id": 9,
+    "FirstName": "Имя_8",
+    "LastName": "Фамилия_8",
+    "ClientBankAccounts": [
+      {
+        "BankAccountType": "Deposit",
+        "Money": 16000.0,
+        "Id": 17,
+        "IsOpen": true
+      },
+      {
+        "BankAccountType": "NonDeposit",
+        "Money": 16000.0,
+        "Id": 18,
+        "IsOpen": true
+      }
+    ]
+  },
+  {
+    "Id": 10,
+    "FirstName": "Имя_9",
+    "LastName": "Фамилия_9",
+    "ClientBankAccounts": [
+      {
+        "BankAccountType": "Deposit",
+        "Money": 18000.0,
+        "Id": 19,
+        "IsOpen": true
+      },
+      {
+        "BankAccountType": "NonDeposit",
+        "Money": 18000.0,
+        "Id": 20,
+        "IsOpen": true
+      }
+    ]
+  },
+  {
+    "Id": 11,
+    "FirstName": "Имя_10",
+    "LastName": "Фамилия_10",
+    "ClientBankAccounts": [
+      {
+        "BankAccountType": "Deposit",
+        "Money": 20000.0,
+        "Id": 21,
+        "IsOpen": true
+      },
+      {
+        "BankAccountType": "NonDeposit",
+        "Money": 20000.0,
+        "Id": 22,
+        "IsOpen": true
+      }
+    ]
+  },
+  {
+    "Id": 12,
+    "FirstName": "Имя_11",
+    "LastName": "Фамилия_11",
+    "ClientBankAccounts": [
+      {
+        "BankAccountType": "Deposit",
+        "Money": 22000.0,
+        "Id": 23,
+        "IsOpen": true
+      },
+      {
+        "BankAccountType": "NonDeposit",
+        "Money": 22000.0,
+        "Id": 24,
+        "IsOpen": true
+      }
+    ]
+  },
+  {
+    "Id": 13,
+    "FirstName": "Имя_12",
+    "LastName": "Фамилия_12",
+    "ClientBankAccounts": [
+      {
+        "BankAccountType": "Deposit",
+        "Money": 24000.0,
+        "Id": 25,
+        "IsOpen": true
+      },
+      {
+        "BankAccountType": "NonDeposit",
+        "Money": 24000.0,
+        "Id": 26,
+        "IsOpen": true
+      }
+    ]
+  },
+  {
+    "Id": 14,
+    "FirstName": "Имя_13",
+    "LastName": "Фамилия_13",
+    "ClientBankAccounts": [
+      {
+        "BankAccountType": "Deposit",
+        "Money": 26000.0,
+        "Id": 27,
+        "IsOpen": true
+      },
+      {
+        "BankAccountType": "NonDeposit",
+        "Money": 26000.0,
+        "Id": 28,
+        "IsOpen": true
+      }
+    ]
+  },
+  {
+    "Id": 15,
+    "FirstName": "Имя_14",
+    "LastName": "Фамилия_14",
+    "ClientBankAccounts": [
+      {
+        "BankAccountType": "Deposit",
+        "Money": 28000.0,
+        "Id": 29,
+        "IsOpen": true
+      },
+      {
+        "BankAccountType": "NonDeposit",
+        "Money": 28000.0,
+        "Id": 30,
+        "IsOpen": true
+      }
+    ]
+  },
+  {
+    "Id": 16,
+    "FirstName": "Имя_15",
+    "LastName": "Фамилия_15",
+    "ClientBankAccounts": [
+      {
+        "BankAccountType": "Deposit",
+        "Money": 30000.0,
+        "Id": 31,
+        "IsOpen": true
+      },
+      {
+        "BankAccountType": "NonDeposit",
+        "Money": 30000.0,
+        "Id": 32,
+        "IsOpen": true
+      }
+    ]
+  },
+  {
+    "Id": 17,
+    "FirstName": "Имя_16",
+    "LastName": "Фамилия_16",
+    "ClientBankAccounts": [
+      {
+        "BankAccountType": "Deposit",
+        "Money": 32000.0,
+        "Id": 33,
+        "IsOpen": true
+      },
+      {
+        "BankAccountType": "NonDeposit",
+        "Money": 32000.0,
+        "Id": 34,
+        "IsOpen": true
+      }
+    ]
+  },
+  {
+    "Id": 18,
+    "FirstName": "Имя_17",
+    "LastName": "Фамилия_17",
+    "ClientBankAccounts": [
+      {
+        "BankAccountType": "Deposit",
+        "Money": 34000.0,
+        "Id": 35,
+        "IsOpen": true
+      },
+      {
+        "BankAccountType": "NonDeposit",
+        "Money": 34000.0,
+        "Id": 36,
+        "IsOpen": true
+      }
+    ]
+  },
+  {
+    "Id": 19,
+    "FirstName": "Имя_18",
+    "LastName": "Фамилия_18",
+    "ClientBankAccounts": [
+      {
+        "BankAccountType": "Deposit",
+        "Money": 36000.0,
+        "Id": 37,
+        "IsOpen": true
+      },
+      {
+        "BankAccountType": "NonDeposit",
+        "Money": 36000.0,
+        "Id": 38,
+        "IsOpen": true
+      }
+    ]
+  },
+  {
+    "Id": 20,
+    "FirstName": "Имя_19",
+    "LastName": "Фамилия_19",
+    "ClientBankAccounts": [
+      {
+        "BankAccountType": "Deposit",
+        "Money": 38000.0,
+        "Id": 39,
+        "IsOpen": true
+      },
+      {
+        "BankAccountType": "NonDeposit",
+        "Money": 38000.0,
+        "Id": 40,
+        "IsOpen": true
+      }
+    ]
+  }
+]

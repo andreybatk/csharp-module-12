@@ -24,8 +24,8 @@ namespace CSharpModule12.ViewModels
 
             //for (int i = 0; i < 20; i++)
             //{
-            //    //Clients.Add(new Client($"Имя_{i}", $"Фамилия_{i}"));
-            //    Clients[i].CreateBankAccount(2000 * i);
+            //    Clients.Add(new Client($"Имя_{i}", $"Фамилия_{i}"));
+            //    Clients[i].CreateBankAccounts(2000 * i);
             //}
             //_clients.Save();
         }
@@ -100,8 +100,10 @@ namespace CSharpModule12.ViewModels
             }
 
             string currentBankAccountStatus = SelectedCurrentBankAccount.IsOpen ? "Открыт" : "Закрыт";
+            string currentBankAccountType = SelectedCurrentBankAccount.BankAccountType == 0 ? "Депозитный" : "Недепозитный";
+            Debug.WriteLine(SelectedCurrentBankAccount.BankAccountType);
             CurrentBankAccountInfo =
-                $"ID: {SelectedCurrentBankAccount.Id}\n" +
+                $"ID: {SelectedCurrentBankAccount.Id} : {currentBankAccountType}\n" +
                 $"Статус: {currentBankAccountStatus}\n" +
                 $"Колличество средств: {SelectedCurrentBankAccount.Money}";
         }
