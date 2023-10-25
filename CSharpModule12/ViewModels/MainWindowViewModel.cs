@@ -10,6 +10,8 @@ using System.Threading;
 using System.Diagnostics;
 using System.Windows.Input;
 using CSharpModule12.Infrastructure.Commands;
+using System.Net.Sockets;
+using CSharpModule12.Views.Windows;
 
 namespace CSharpModule12.ViewModels
 {
@@ -20,7 +22,8 @@ namespace CSharpModule12.ViewModels
             _clients = new Repository<Client>(path);
             Clients = _clients.Clients;
 
-            OpenOrCloseBankAccount = new RelayCommand(onOpenOrCloseBankAccountExecuted, canOpenOrCloseBankAccountExecute);
+            OpenOrCloseBankAccount = new RelayCommand(OnOpenOrCloseBankAccountExecuted, CanOpenOrCloseBankAccountExecute);
+            TopUpBalance = new RelayCommand(OnTopUpBalanceExecuted, CanTopUpBalanceExecute);
 
             //for (int i = 0; i < 20; i++)
             //{
@@ -69,7 +72,7 @@ namespace CSharpModule12.ViewModels
         /// Команда на открытие/закрытие счета
         /// </summary>
         public ICommand OpenOrCloseBankAccount { get; }
-        private bool canOpenOrCloseBankAccountExecute(object p)
+        private bool CanOpenOrCloseBankAccountExecute(object p)
         {
             if(SelectedCurrentBankAccount != null)
             {
@@ -77,12 +80,31 @@ namespace CSharpModule12.ViewModels
             }
             return false;
         }
-        private void onOpenOrCloseBankAccountExecuted(object p)
+        private void OnOpenOrCloseBankAccountExecuted(object p)
         {
             SelectedCurrentBankAccount.OpenOrCloseBankAccount();
             UpdateBankAccountInfo();
         }
-
+        /// <summary>
+        /// Команда пополнить счет
+        /// </summary>
+        public ICommand TopUpBalance { get; }
+        private bool CanTopUpBalanceExecute(object p)
+        {
+            if (SelectedCurrentBankAccount != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        private void OnTopUpBalanceExecuted(object p)
+        {
+            TopUpBalanceWindow topUpBalance = new TopUpBalanceWindow();
+            TopUpBalanceWindowViewModel topUpBalanceViewModel = new TopUpBalanceWindowViewModel(SelectedCurrentBankAccount, topUpBalance);
+            topUpBalance.DataContext = topUpBalanceViewModel;
+            topUpBalance.ShowDialog();
+            UpdateBankAccountInfo();
+        }
         private void UpdateBankAccounts()
         {
             if(_currentClient != null)
@@ -103,7 +125,7 @@ namespace CSharpModule12.ViewModels
             string currentBankAccountType = SelectedCurrentBankAccount.BankAccountType == 0 ? "Депозитный" : "Недепозитный";
             Debug.WriteLine(SelectedCurrentBankAccount.BankAccountType);
             CurrentBankAccountInfo =
-                $"ID: {SelectedCurrentBankAccount.Id} : {currentBankAccountType}\n" +
+                $"ID: {SelectedCurrentBankAccount.Id} Тип: {currentBankAccountType}\n" +
                 $"Статус: {currentBankAccountStatus}\n" +
                 $"Колличество средств: {SelectedCurrentBankAccount.Money}";
         }

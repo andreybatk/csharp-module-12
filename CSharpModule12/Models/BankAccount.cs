@@ -37,7 +37,8 @@ namespace CSharpModule12.Models
         public double Money { get { return _money; } private set { Set(ref _money, value); } }
         public int Id { get { return _id; } private set { Set(ref _id, value); } }
         public bool IsOpen { get { return _isOpen; } private set { Set(ref _isOpen, value); } }
-        public AccountType BankAccountType { get; set; }
+        [JsonProperty("AccountType")]
+        public AccountType BankAccountType { get; private set; }
 
         /// <summary>
         /// Открытие/Закрытие счета

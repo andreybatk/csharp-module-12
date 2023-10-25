@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:CSharpModule12"
              StartupUri="Views/Windows/MainWindow.xaml">
     <Application.Resources>
+        <SolidColorBrush Color="#FF5D61A2" x:Key="mainBackgroundColor"/>
         <SolidColorBrush Color="#FFA3A6DC" x:Key="brushColor"/>
         <SolidColorBrush Color="White" x:Key="textColor"/>
         <SolidColorBrush Color="#FFE5E5E5" x:Key="labelColor"/>

@@ -11,11 +11,6 @@
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
-    <Window.Resources>
-        <SolidColorBrush Color="#FFA3A6DC" x:Key="secondColor"/>
-        <SolidColorBrush Color="White" x:Key="textColor"/>
-        <SolidColorBrush Color="#FFE5E5E5" x:Key="labelColor"/>
-    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -29,7 +24,7 @@
         <ListView Grid.Row="0" Grid.Column="1" Grid.RowSpan="3"
                   Margin="0, 5, 5, 5" ItemsSource="{Binding Clients}"
                   SelectedItem = "{Binding SelectedCurrentClient}"
-                  Background="{StaticResource ResourceKey = secondColor}">
+                  Background="{StaticResource ResourceKey = brushColor}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}" Width="60"/>
@@ -40,7 +35,7 @@
         </ListView>
         <Grid Grid.Row="0" Grid.Column="0"
               Margin ="5, 5, 5, 5"
-              Background="{StaticResource ResourceKey = secondColor}">
+              Background="{StaticResource ResourceKey = brushColor}">
                 <StackPanel>
                 <TextBlock FontSize="23" Foreground="{StaticResource ResourceKey = textColor}" Text="Банковский счет:"/>
                 <ComboBox DisplayMemberPath="Id"
@@ -54,13 +49,12 @@
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="0" Margin ="5, 5, 5, 5"
-               Background="{StaticResource ResourceKey = secondColor}">
+               Background="{StaticResource ResourceKey = brushColor}">
             <StackPanel>
                 <TextBlock FontSize="23" Foreground="{StaticResource ResourceKey = textColor}" Text="Управление счетом:"/>
                 <Button Content="Открыть/Закрыть счет" Command="{Binding OpenOrCloseBankAccount}"/>
-                <Button x:Name="addMoney" Content="Пополнить счет"/>
+                <Button Content="Пополнить счет" Command="{Binding TopUpBalance}"/>
                 <Button x:Name="transferMoney" Content="Перевод средств"/>
-                <Button x:Name="addNewBankAccount" Content="Добавить новый счет"/>
             </StackPanel> 
         </Grid>
     </Grid>
