@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using CSharpModule12.ViewModels.Base;
+﻿using CSharpModule12.ViewModels.Base;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace CSharpModule12.Models
 {
-    internal class BankAccount : ViewModel, ITransaction<BankAccount>
+    internal class BankAccount : ViewModel, ITransaction<BankAccount>, ITopUpBankAccount<double>
     {
         public enum AccountType
         {
             Deposit = 0,
-            NonDeposit
+            NonDeposit = 1
         }
         public BankAccount(double money, AccountType accountType)
         {
@@ -29,6 +21,7 @@ namespace CSharpModule12.Models
         {
             _bankAccountId = 0;
         }
+
         private double _money;
         private int _id;
         private bool _isOpen;
@@ -50,22 +43,19 @@ namespace CSharpModule12.Models
         }
         public void MoneyTransfer(BankAccount taken, double money)
         {
-            if(this.BankAccountType != taken.BankAccountType)
-            {
-                MessageBox.Show("Перевод возможен только между одинаковыми типами счетов!", "Ошибка");
-                return;
-            }
-            if(this.Money <= money)
-            {
-                MessageBox.Show("Недостаточно средств!", "Ошибка");
-                return;
-            }
             this.Money -= money;
             taken.Money += money;
         }
         public void AddMoney(double money)
         {
-            this.Money += money;
+            ITopUpBankAccount<double> account = this;
+            double balance = account.GetBalance();
+            balance += money;
+            this.Money = balance;
+        }
+        public double GetBalance()
+        {
+            return this.Money;
         }
         private static int NextId()
         {

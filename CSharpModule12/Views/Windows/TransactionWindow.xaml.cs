@@ -2,9 +2,9 @@
 
 namespace CSharpModule12.Views.Windows
 {
-    public partial class MainWindow : Window
+    public partial class TransactionWindow : Window
     {
-        public MainWindow()
+        public TransactionWindow()
         {
             InitializeComponent();
         }

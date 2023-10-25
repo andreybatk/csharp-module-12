@@ -52,9 +52,9 @@
                Background="{StaticResource ResourceKey = brushColor}">
             <StackPanel>
                 <TextBlock FontSize="23" Foreground="{StaticResource ResourceKey = textColor}" Text="Управление счетом:"/>
-                <Button Content="Открыть/Закрыть счет" Command="{Binding OpenOrCloseBankAccount}"/>
-                <Button Content="Пополнить счет" Command="{Binding TopUpBalance}"/>
-                <Button x:Name="transferMoney" Content="Перевод средств"/>
+                <Button Content="Открыть/Закрыть счет" Command="{Binding OpenOrCloseBankAccountCommand}"/>
+                <Button Content="Пополнить счет" Command="{Binding TopUpBalanceCommand}"/>
+                <Button x:Name="transferMoney" Content="Перевод средств" Command="{Binding TransactionCommand}"/>
             </StackPanel> 
         </Grid>
     </Grid>

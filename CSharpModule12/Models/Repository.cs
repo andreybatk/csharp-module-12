@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace CSharpModule12.Models
@@ -20,8 +15,9 @@ namespace CSharpModule12.Models
             CheckFileExists();
             Load();
         }
-        public ObservableCollection<T> Clients { get; private set; }
+
         private string _path;
+        public ObservableCollection<T> Clients { get; private set; }
 
         public void Save()
         {

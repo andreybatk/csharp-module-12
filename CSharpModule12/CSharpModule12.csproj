@@ -61,13 +61,18 @@
     </ApplicationDefinition>
     <Compile Include="Infrastructure\Commands\Base\Command.cs" />
     <Compile Include="Infrastructure\Commands\RelayCommand.cs" />
+    <Compile Include="Models\ITopUpBankAccount.cs" />
     <Compile Include="Models\ITransaction.cs" />
     <Compile Include="Models\Repository.cs" />
     <Compile Include="ViewModels\Base\ViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\TopUpBalanceWindowViewModel.cs" />
+    <Compile Include="ViewModels\TransactionWindowViewModel.cs" />
     <Compile Include="Views\Windows\TopUpBalanceWindow.xaml.cs">
       <DependentUpon>TopUpBalanceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\TransactionWindow.xaml.cs">
+      <DependentUpon>TransactionWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -84,6 +89,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\Windows\TopUpBalanceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\TransactionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

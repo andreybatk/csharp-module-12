@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Collections.ObjectModel;
 using CSharpModule12.ViewModels.Base;
 using static CSharpModule12.Models.BankAccount;
 
@@ -34,7 +27,6 @@ namespace CSharpModule12.Models
         public string FirstName { get => _firstName; private set => Set(ref _firstName, value); }
         public string LastName { get => _lastName; private set => Set(ref _lastName, value); }
         public ObservableCollection<BankAccount> ClientBankAccounts { get; private set; }
-
 
         public void CreateBankAccounts(double money)
         {

@@ -19,19 +19,10 @@
         <TextBlock Grid.Row="1" Foreground="{StaticResource textColor}">Введите сумму:</TextBlock>
         <TextBox Grid.Row="2" MinWidth="250"
                  Text = "{Binding UpMoney,UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        
+
         <WrapPanel Grid.Row="3" HorizontalAlignment="Right" Margin="0,15,0,0">
-            <Button IsDefault="True" MinWidth="60" Margin="0,0,10,0" Command="{Binding TopUpYourBalance}">OK</Button>
+            <Button IsDefault="True" MinWidth="60" Margin="0,0,10,0" Command="{Binding TopUpYourBalanceCommand}">OK</Button>
             <Button IsCancel="True" MinWidth="60">Отмена</Button>
         </WrapPanel>
     </Grid>
-    <!--<Grid>
-        <StackPanel Background="{StaticResource brushColor}">
-            <Label Background="{StaticResource labelColor}">
-                <TextBlock Foreground="{StaticResource textColor}" Text = "{Binding test}"/>
-            </Label>
-            <TextBlock Foreground="{StaticResource textColor}" Text = "Сумма:"/>
-            <TextBox Background="{StaticResource labelColor}" Text = "{Binding test}"/>
-        </StackPanel>
-    </Grid>-->
 </Window>

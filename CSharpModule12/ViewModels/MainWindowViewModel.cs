@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CSharpModule12.ViewModels.Base;
-using CSharpModule12.Models;
-using System.Collections.ObjectModel;
-using System.Threading;
+﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows.Input;
 using CSharpModule12.Infrastructure.Commands;
-using System.Net.Sockets;
+using CSharpModule12.Models;
+using CSharpModule12.ViewModels.Base;
 using CSharpModule12.Views.Windows;
 
 namespace CSharpModule12.ViewModels
@@ -19,11 +12,12 @@ namespace CSharpModule12.ViewModels
     {
         public MainWindowViewModel()
         {
-            _clients = new Repository<Client>(path);
-            Clients = _clients.Clients;
+            _clientsRepository = new Repository<Client>(path);
+            Clients = _clientsRepository.Clients;
 
-            OpenOrCloseBankAccount = new RelayCommand(OnOpenOrCloseBankAccountExecuted, CanOpenOrCloseBankAccountExecute);
-            TopUpBalance = new RelayCommand(OnTopUpBalanceExecuted, CanTopUpBalanceExecute);
+            OpenOrCloseBankAccountCommand = new RelayCommand(OnOpenOrCloseBankAccountExecuted, CanOpenOrCloseBankAccountExecute);
+            TopUpBalanceCommand = new RelayCommand(OnTopUpBalanceExecuted, CanTopUpBalanceExecute);
+            TransactionCommand = new RelayCommand(OnTransactionExecuted);
 
             //for (int i = 0; i < 20; i++)
             //{
@@ -36,7 +30,7 @@ namespace CSharpModule12.ViewModels
         private readonly string path = "clients.json";
         private Client _currentClient;
         private BankAccount _currentBankAccount;
-        private Repository<Client> _clients;
+        private Repository<Client> _clientsRepository;
         private ObservableCollection<BankAccount> _bankAccounts;
         private string _currentBankAccountInfo;
 
@@ -71,7 +65,7 @@ namespace CSharpModule12.ViewModels
         /// <summary>
         /// Команда на открытие/закрытие счета
         /// </summary>
-        public ICommand OpenOrCloseBankAccount { get; }
+        public ICommand OpenOrCloseBankAccountCommand { get; }
         private bool CanOpenOrCloseBankAccountExecute(object p)
         {
             if(SelectedCurrentBankAccount != null)
@@ -88,7 +82,7 @@ namespace CSharpModule12.ViewModels
         /// <summary>
         /// Команда пополнить счет
         /// </summary>
-        public ICommand TopUpBalance { get; }
+        public ICommand TopUpBalanceCommand { get; }
         private bool CanTopUpBalanceExecute(object p)
         {
             if (SelectedCurrentBankAccount != null)
@@ -104,6 +98,20 @@ namespace CSharpModule12.ViewModels
             topUpBalance.DataContext = topUpBalanceViewModel;
             topUpBalance.ShowDialog();
             UpdateBankAccountInfo();
+            _clientsRepository.Save();
+        }
+        /// <summary>
+        /// Перевод средств
+        /// </summary>
+        public ICommand TransactionCommand { get; }
+        private void OnTransactionExecuted(object p)
+        {
+            TransactionWindow transaction = new TransactionWindow();
+            TransactionWindowViewModel transactionViewModel = new TransactionWindowViewModel(SelectedCurrentBankAccount, transaction, Clients);
+            transaction.DataContext = transactionViewModel;
+            transaction.ShowDialog();
+            UpdateBankAccountInfo();
+            _clientsRepository.Save();
         }
         private void UpdateBankAccounts()
         {

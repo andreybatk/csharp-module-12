@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSharpModule12.Models
+﻿namespace CSharpModule12.Models
 {
     internal interface ITransaction<in T>
     {
