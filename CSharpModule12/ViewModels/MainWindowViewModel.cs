@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows.Input;
 using CSharpModule12.Infrastructure.Commands;
@@ -19,6 +21,7 @@ namespace CSharpModule12.ViewModels
             TopUpBalanceCommand = new RelayCommand(OnTopUpBalanceExecuted, CanTopUpBalanceExecute);
             TransactionCommand = new RelayCommand(OnTransactionExecuted);
 
+            Employee = new Consultant(Employee.EmployeeName.Consultant, "Анатолий", "Цой");
             //for (int i = 0; i < 20; i++)
             //{
             //    Clients.Add(new Client($"Имя_{i}", $"Фамилия_{i}"));
@@ -27,13 +30,16 @@ namespace CSharpModule12.ViewModels
             //_clients.Save();
         }
 
+        private Employee Employee { get; set; }
         private readonly string path = "clients.json";
         private Client _currentClient;
         private BankAccount _currentBankAccount;
         private Repository<Client> _clientsRepository;
         private ObservableCollection<BankAccount> _bankAccounts;
+        private ObservableCollection<string> _currentChangesInfo;
         private string _currentBankAccountInfo;
 
+        public ObservableCollection<string> CurrentChangesInfo { get => _currentChangesInfo; set => Set(ref _currentChangesInfo, value); }
         public ObservableCollection<Client> Clients { get; set; }
         public ObservableCollection<BankAccount> BankAccounts { get => _bankAccounts; set => Set(ref _bankAccounts, value); }
         public Client SelectedCurrentClient
@@ -61,7 +67,9 @@ namespace CSharpModule12.ViewModels
             }
         }
         public string CurrentBankAccountInfo { get => _currentBankAccountInfo; set => Set(ref _currentBankAccountInfo, value); }
-           
+
+        public static event Action<string> OpenOrCloseBankAccountInfo;
+
         /// <summary>
         /// Команда на открытие/закрытие счета
         /// </summary>
@@ -78,6 +86,8 @@ namespace CSharpModule12.ViewModels
         {
             SelectedCurrentBankAccount.OpenOrCloseBankAccount();
             UpdateBankAccountInfo();
+            string info = SelectedCurrentBankAccount.IsOpen ? "закрыл" : "открыл";
+            OpenOrCloseBankAccountInfo?.Invoke($"{Employee.JobTitle}: {Employee.FirstName} {Employee.LastName} {info} банковский счет.");
         }
         /// <summary>
         /// Команда пополнить счет
@@ -128,6 +138,8 @@ namespace CSharpModule12.ViewModels
                 CurrentBankAccountInfo = "";
                 return;
             }
+
+            CurrentChangesInfo = SelectedCurrentBankAccount.ChangesInfo;
 
             string currentBankAccountStatus = SelectedCurrentBankAccount.IsOpen ? "Открыт" : "Закрыт";
             string currentBankAccountType = SelectedCurrentBankAccount.BankAccountType == 0 ? "Депозитный" : "Недепозитный";

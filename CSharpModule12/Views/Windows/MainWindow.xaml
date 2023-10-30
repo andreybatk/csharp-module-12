@@ -57,5 +57,14 @@
                 <Button x:Name="transferMoney" Content="Перевод средств" Command="{Binding TransactionCommand}"/>
             </StackPanel> 
         </Grid>
+        <Grid Grid.Row="2" Grid.Column="0"  Background="{StaticResource ResourceKey = brushColor}"
+              Margin ="5, 5, 5, 5">
+            <StackPanel>
+                <TextBlock FontSize="21" Foreground="{StaticResource ResourceKey = textColor}"
+                            Text="Информация об изменениях:"/>
+                <ListBox ItemsSource="{Binding CurrentChangesInfo}"
+                    Background="{StaticResource ResourceKey = brushColor}"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

@@ -1,5 +1,10 @@
-﻿using CSharpModule12.ViewModels.Base;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Documents;
+using CSharpModule12.ViewModels.Base;
+using CSharpModule12.ViewModels;
 using Newtonsoft.Json;
+using System.Collections.ObjectModel;
 
 namespace CSharpModule12.Models
 {
@@ -16,6 +21,8 @@ namespace CSharpModule12.Models
             this.Id = NextId();
             this.IsOpen = true;
             this.BankAccountType = accountType;
+            this.ChangesInfo = new ObservableCollection<string>();
+            MainWindowViewModel.OpenOrCloseBankAccountInfo += TakeChangesInfo;
         }
         static BankAccount()
         {
@@ -26,12 +33,14 @@ namespace CSharpModule12.Models
         private int _id;
         private bool _isOpen;
         private static int _bankAccountId;
+        private ObservableCollection<string> _changesInfo;
 
         public double Money { get { return _money; } private set { Set(ref _money, value); } }
         public int Id { get { return _id; } private set { Set(ref _id, value); } }
         public bool IsOpen { get { return _isOpen; } private set { Set(ref _isOpen, value); } }
         [JsonProperty("AccountType")]
         public AccountType BankAccountType { get; private set; }
+        public ObservableCollection<string> ChangesInfo { get { return _changesInfo; } private set { Set(ref _changesInfo, value); } }
 
         /// <summary>
         /// Открытие/Закрытие счета
@@ -56,6 +65,10 @@ namespace CSharpModule12.Models
         public double GetBalance()
         {
             return this.Money;
+        }
+        private void TakeChangesInfo(string info)
+        {
+            this.ChangesInfo.Add(info);
         }
         private static int NextId()
         {
