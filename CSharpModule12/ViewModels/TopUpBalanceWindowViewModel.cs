@@ -10,20 +10,24 @@ namespace CSharpModule12.ViewModels
 {
     internal class TopUpBalanceWindowViewModel : ViewModel
     {
-        public TopUpBalanceWindowViewModel(BankAccount bankAccount, TopUpBalanceWindow window)
+        public TopUpBalanceWindowViewModel(Employee employee, BankAccount bankAccount, TopUpBalanceWindow window)
         {
+            this._employee = employee;
             this._window = window;
             this._bankAccount = bankAccount;
             this.BankAccountInfo = $"ID: {bankAccount.Id} Баланс: {bankAccount.Money}";
             TopUpYourBalanceCommand = new RelayCommand(OnTopUpYourBalanceExecuted, CanTopUpYourBalanceExecute);
         }
 
+        private Employee _employee;
         private TopUpBalanceWindow _window;
         private BankAccount _bankAccount;
         private string _upMoney;
 
+
         public string UpMoney { get => _upMoney; set => Set(ref _upMoney, value); }
         public string BankAccountInfo { get; set; }
+        public static event Action<string> TopUpYourBalanceInfo;
 
         /// <summary>
         /// Команда для подтверждения и пополнение счета
@@ -42,6 +46,7 @@ namespace CSharpModule12.ViewModels
             try
             {
                 _bankAccount.AddMoney(double.Parse(UpMoney));
+                TopUpYourBalanceInfo?.Invoke($"{_employee.DisplayEmployeeName()}: {_employee.FirstName} {_employee.LastName} пополнил счет на {UpMoney} средств.");
                 _window.Close();
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Ошибка!"); }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows.Input;
@@ -21,16 +20,17 @@ namespace CSharpModule12.ViewModels
             TopUpBalanceCommand = new RelayCommand(OnTopUpBalanceExecuted, CanTopUpBalanceExecute);
             TransactionCommand = new RelayCommand(OnTransactionExecuted);
 
-            Employee = new Consultant(Employee.EmployeeName.Consultant, "Анатолий", "Цой");
+            _employee = new Consultant(Employee.EmployeeName.Consultant, "Анатолий", "Цой");
+
             //for (int i = 0; i < 20; i++)
             //{
             //    Clients.Add(new Client($"Имя_{i}", $"Фамилия_{i}"));
             //    Clients[i].CreateBankAccounts(2000 * i);
             //}
-            //_clients.Save();
+            //_clientsRepository.Save();
         }
 
-        private Employee Employee { get; set; }
+        private Employee _employee { get; set; }
         private readonly string path = "clients.json";
         private Client _currentClient;
         private BankAccount _currentBankAccount;
@@ -87,7 +87,7 @@ namespace CSharpModule12.ViewModels
             SelectedCurrentBankAccount.OpenOrCloseBankAccount();
             UpdateBankAccountInfo();
             string info = SelectedCurrentBankAccount.IsOpen ? "закрыл" : "открыл";
-            OpenOrCloseBankAccountInfo?.Invoke($"{Employee.JobTitle}: {Employee.FirstName} {Employee.LastName} {info} банковский счет.");
+            OpenOrCloseBankAccountInfo?.Invoke($"{_employee.DisplayEmployeeName()}: {_employee.FirstName} {_employee.LastName} {info} банковский счет.");
         }
         /// <summary>
         /// Команда пополнить счет
@@ -104,7 +104,7 @@ namespace CSharpModule12.ViewModels
         private void OnTopUpBalanceExecuted(object p)
         {
             TopUpBalanceWindow topUpBalance = new TopUpBalanceWindow();
-            TopUpBalanceWindowViewModel topUpBalanceViewModel = new TopUpBalanceWindowViewModel(SelectedCurrentBankAccount, topUpBalance);
+            TopUpBalanceWindowViewModel topUpBalanceViewModel = new TopUpBalanceWindowViewModel(_employee, SelectedCurrentBankAccount, topUpBalance);
             topUpBalance.DataContext = topUpBalanceViewModel;
             topUpBalance.ShowDialog();
             UpdateBankAccountInfo();
@@ -117,7 +117,7 @@ namespace CSharpModule12.ViewModels
         private void OnTransactionExecuted(object p)
         {
             TransactionWindow transaction = new TransactionWindow();
-            TransactionWindowViewModel transactionViewModel = new TransactionWindowViewModel(SelectedCurrentBankAccount, transaction, Clients);
+            TransactionWindowViewModel transactionViewModel = new TransactionWindowViewModel(_employee, SelectedCurrentBankAccount, transaction, Clients);
             transaction.DataContext = transactionViewModel;
             transaction.ShowDialog();
             UpdateBankAccountInfo();
@@ -139,7 +139,7 @@ namespace CSharpModule12.ViewModels
                 return;
             }
 
-            CurrentChangesInfo = SelectedCurrentBankAccount.ChangesInfo;
+            CurrentChangesInfo = _employee.ChangesInfo;
 
             string currentBankAccountStatus = SelectedCurrentBankAccount.IsOpen ? "Открыт" : "Закрыт";
             string currentBankAccountType = SelectedCurrentBankAccount.BankAccountType == 0 ? "Депозитный" : "Недепозитный";

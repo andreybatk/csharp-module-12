@@ -11,9 +11,10 @@ namespace CSharpModule12.ViewModels
 {
     internal class TransactionWindowViewModel : ViewModel
     {
-        public TransactionWindowViewModel(BankAccount bankAccount, TransactionWindow window, ObservableCollection<Client> clients)
+        public TransactionWindowViewModel(Employee employee, BankAccount bankAccount, TransactionWindow window, ObservableCollection<Client> clients)
         {
             string currentBankAccountType = bankAccount.BankAccountType == 0 ? "Депозитный" : "Недепозитный";
+            this._employee = employee;
             this._window = window;
             this._bankAccount = bankAccount;
             this.Clients = clients;
@@ -21,6 +22,7 @@ namespace CSharpModule12.ViewModels
             TransactionCommand = new RelayCommand(OnTransactionExecuted, CanTransactionExecute);
         }
 
+        private Employee _employee;
         private TransactionWindow _window;
         private BankAccount _bankAccount;
         private BankAccount _currentBankAccount;
@@ -32,6 +34,7 @@ namespace CSharpModule12.ViewModels
         public ObservableCollection<Client> Clients { get; private set; }
         public string UpMoney { get => _upMoney; set => Set(ref _upMoney, value); }
         public string BankAccountInfo { get; set; }
+        public static event Action<string> TransactionInfo;
 
         public Client SelectedCurrentClient
         {
@@ -86,6 +89,8 @@ namespace CSharpModule12.ViewModels
                 }
 
                 _bankAccount.MoneyTransfer(SelectedCurrentBankAccount, double.Parse(UpMoney));
+                TransactionInfo?.Invoke($"{_employee.DisplayEmployeeName()}: {_employee.FirstName} {_employee.LastName} " +
+                    $"перевел с банковского счета {_bankAccount.Id} на {SelectedCurrentBankAccount.Id} : {UpMoney} средств.");
                 _window.Close();
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Ошибка!"); }
