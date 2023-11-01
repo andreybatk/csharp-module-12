@@ -4,7 +4,7 @@ namespace CSharpModule12.Models
 {
     internal class Consultant : Employee
     {
-        public Consultant(EmployeeName jobTitle,string firstName, string lastName) : base(jobTitle, firstName, lastName)
+        public Consultant(string firstName2, string lastName) : base(EmployeeName.Consultant, firstName2, lastName)
         {
             MainWindowViewModel.OpenOrCloseBankAccountInfo += TakeChangesInfo;
             TopUpBalanceWindowViewModel.TopUpYourBalanceInfo += TakeChangesInfo;
