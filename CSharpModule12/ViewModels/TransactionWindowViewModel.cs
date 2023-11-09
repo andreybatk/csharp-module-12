@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 using CSharpModule12.Infrastructure.Commands;
+using CSharpModule12.Infrastructure;
 using CSharpModule12.Models;
 using CSharpModule12.ViewModels.Base;
 using CSharpModule12.Views.Windows;
@@ -77,22 +78,13 @@ namespace CSharpModule12.ViewModels
         {
             try
             {
-                if (_bankAccount.BankAccountType != SelectedCurrentBankAccount.BankAccountType)
-                {
-                    MessageBox.Show("Перевод возможен только между одинаковыми типами счетов!", "Ошибка");
-                    return;
-                }
-                if (_bankAccount.Money < double.Parse(UpMoney))
-                {
-                    MessageBox.Show("Недостаточно средств!", "Ошибка");
-                    return;
-                }
-
                 _bankAccount.MoneyTransfer(SelectedCurrentBankAccount, double.Parse(UpMoney));
                 TransactionInfo?.Invoke($"{_employee.DisplayEmployeeName()}: {_employee.FirstName} {_employee.LastName} " +
                     $"перевел с банковского счета {_bankAccount.Id} на {SelectedCurrentBankAccount.Id} : {UpMoney} средств.");
                 _window.Close();
             }
+            catch (MismatchBankAccountTypeException ex) { MessageBox.Show(ex.Message, "Ошибка!"); }
+            catch (InsufficientExecutionStackException ex) { MessageBox.Show(ex.Message, "Ошибка!"); }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Ошибка!"); }
         }
     }

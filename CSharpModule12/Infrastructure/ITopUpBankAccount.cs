@@ -1,4 +1,4 @@
-﻿namespace CSharpModule12.Models
+﻿namespace CSharpModule12.Infrastructure
 {
     internal interface ITopUpBankAccount<out T>
     {

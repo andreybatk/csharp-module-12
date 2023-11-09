@@ -1,4 +1,5 @@
 ﻿using CSharpModule12.ViewModels.Base;
+using CSharpModule12.Infrastructure;
 using Newtonsoft.Json;
 
 namespace CSharpModule12.Models
@@ -43,6 +44,16 @@ namespace CSharpModule12.Models
         }
         public void MoneyTransfer(BankAccount taken, double money)
         {
+            if(taken.Money < money)
+            {
+                throw new InsufficientMoneyException("Недостаточно средств!");
+            }
+
+            if(taken.BankAccountType != this.BankAccountType)
+            {
+                throw new MismatchBankAccountTypeException("Перевод возможен только между одинаковыми типами счетов!");
+            }
+
             this.Money -= money;
             taken.Money += money;
         }

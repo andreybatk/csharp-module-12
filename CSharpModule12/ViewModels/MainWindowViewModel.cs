@@ -21,13 +21,13 @@ namespace CSharpModule12.ViewModels
             TransactionCommand = new RelayCommand(OnTransactionExecuted);
 
             _employee = new Manager("Анатолий", "Цой");
-        //for (int i = 0; i < 20; i++)
-        //{
-        //    Clients.Add(new Client($"Имя_{i}", $"Фамилия_{i}"));
-        //    Clients[i].CreateBankAccounts(2000 * i);
-        //}
-        //_clientsRepository.Save();
-    }
+            //for (int i = 0; i < 20; i++)
+            //{
+            //    Clients.Add(new Client($"Имя_{i}", $"Фамилия_{i}"));
+            //    Clients[i].CreateBankAccounts(2000 * i);
+            //}
+            //_clientsRepository.Save();
+        }
 
         private Employee _employee { get; set; }
         private readonly string path = "clients.json";
