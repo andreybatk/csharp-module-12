@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
-using CSharpModule12.ViewModels.Base;
 
-namespace CSharpModule12.Models
+namespace CSharpModule12.DAL.Models
 {
-    internal abstract class Employee : ViewModel
+    public abstract class Employee : CustomNotifyPropertyChanged
     {
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
@@ -20,9 +18,7 @@ namespace CSharpModule12.Models
 
         public enum EmployeeName
         {
-            [Display(Name="Консультант")]
             Consultant = 0,
-            [Display(Name = "Менеджер")]
             Manager = 1
         }
         public Employee(EmployeeName jobTitle, string firstName, string lastName)
@@ -40,29 +36,12 @@ namespace CSharpModule12.Models
 
         public string DisplayEmployeeName()
         {
-            var EmployeeDisplayName = JobTitle.GetAttribute<DisplayAttribute>();
-
-            return EmployeeDisplayName.Name;
+            return JobTitle.ToString();
         }
         public void TakeChangesInfo(string info)
         {
             this.ChangesInfo.Add(info);
         }
         private static int NextId() => _id++;
-    }
-    public static class Extensions
-    {
-        /// <summary>
-        ///     A generic extension method that aids in reflecting 
-        ///     and retrieving any attribute that is applied to an `Enum`.
-        /// </summary>
-        public static TAttribute GetAttribute<TAttribute>(this Enum enumValue)
-                where TAttribute : Attribute
-        {
-            return enumValue.GetType()
-                            .GetMember(enumValue.ToString())
-                            .First()
-                            .GetCustomAttribute<TAttribute>();
-        }
     }
 }

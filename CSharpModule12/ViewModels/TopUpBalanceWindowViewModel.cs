@@ -2,13 +2,13 @@
 using System.Windows;
 using System.Windows.Input;
 using CSharpModule12.Infrastructure.Commands;
-using CSharpModule12.Models;
+using CSharpModule12.DAL.Models;
 using CSharpModule12.ViewModels.Base;
 using CSharpModule12.Views.Windows;
 
 namespace CSharpModule12.ViewModels
 {
-    internal class TopUpBalanceWindowViewModel : ViewModel
+    public class TopUpBalanceWindowViewModel : ViewModel
     {
         public TopUpBalanceWindowViewModel(Employee employee, BankAccount bankAccount, TopUpBalanceWindow window)
         {

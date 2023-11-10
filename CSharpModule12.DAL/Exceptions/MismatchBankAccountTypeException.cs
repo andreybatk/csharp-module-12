@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace CSharpModule12.Infrastructure
+namespace CSharpModule12.DAL.Exceptions
 {
-    internal class MismatchBankAccountTypeException : Exception
+    public class MismatchBankAccountTypeException : Exception
     {
         public MismatchBankAccountTypeException() : base() { }
         public MismatchBankAccountTypeException(string message) : base(message) { }

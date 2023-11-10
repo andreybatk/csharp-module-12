@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace CSharpModule12.ViewModels.Base
+namespace CSharpModule12.DAL.Models
 {
-    public abstract class ViewModel : INotifyPropertyChanged
+    public abstract class CustomNotifyPropertyChanged : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -12,7 +12,7 @@ namespace CSharpModule12.ViewModels.Base
         }
         protected virtual bool Set<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {
-            if(Equals(field, value)) return false;
+            if (Equals(field, value)) return false;
             field = value;
             OnPropertyChanged(propertyName);
             return true;

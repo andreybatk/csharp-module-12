@@ -1,10 +1,9 @@
 ﻿using System.Collections.ObjectModel;
-using CSharpModule12.ViewModels.Base;
-using static CSharpModule12.Models.BankAccount;
+using static CSharpModule12.DAL.Models.BankAccount;
 
-namespace CSharpModule12.Models
+namespace CSharpModule12.DAL.Models
 {
-    internal class Client : ViewModel
+    public class Client : CustomNotifyPropertyChanged
     {
         public Client(string firstName, string lastName)
         {

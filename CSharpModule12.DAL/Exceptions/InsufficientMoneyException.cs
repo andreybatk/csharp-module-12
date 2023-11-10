@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace CSharpModule12.Infrastructure
+namespace CSharpModule12.DAL.Exceptions
 {
-    internal class InsufficientMoneyException : Exception
+    public class InsufficientMoneyException : Exception
     {
         public InsufficientMoneyException() : base() { }
         public InsufficientMoneyException(string message) : base(message) { }

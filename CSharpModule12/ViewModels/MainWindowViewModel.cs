@@ -3,13 +3,13 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows.Input;
 using CSharpModule12.Infrastructure.Commands;
-using CSharpModule12.Models;
+using CSharpModule12.DAL.Models;
 using CSharpModule12.ViewModels.Base;
 using CSharpModule12.Views.Windows;
 
 namespace CSharpModule12.ViewModels
 {
-    internal class MainWindowViewModel : ViewModel
+    public class MainWindowViewModel : ViewModel
     {
         public MainWindowViewModel()
         {
@@ -21,6 +21,9 @@ namespace CSharpModule12.ViewModels
             TransactionCommand = new RelayCommand(OnTransactionExecuted);
 
             _employee = new Manager("Анатолий", "Цой");
+            MainWindowViewModel.OpenOrCloseBankAccountInfo += _employee.TakeChangesInfo;
+            TopUpBalanceWindowViewModel.TopUpYourBalanceInfo += _employee.TakeChangesInfo;
+            TransactionWindowViewModel.TransactionInfo += _employee.TakeChangesInfo;
             //for (int i = 0; i < 20; i++)
             //{
             //    Clients.Add(new Client($"Имя_{i}", $"Фамилия_{i}"));

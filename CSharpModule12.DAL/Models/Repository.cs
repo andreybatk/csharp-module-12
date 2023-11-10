@@ -4,9 +4,9 @@ using System.IO;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace CSharpModule12.Models
+namespace CSharpModule12.DAL.Models
 {
-    internal class Repository<T> where T : class
+    public class Repository<T> where T : class
     {
         public Repository(string path)
         {

@@ -1,10 +1,10 @@
-﻿using CSharpModule12.ViewModels.Base;
-using CSharpModule12.Infrastructure;
+﻿using CSharpModule12.DAL.Interfaces;
+using CSharpModule12.DAL.Exceptions;
 using Newtonsoft.Json;
 
-namespace CSharpModule12.Models
+namespace CSharpModule12.DAL.Models
 {
-    internal class BankAccount : ViewModel, ITransaction<BankAccount>, ITopUpBankAccount<double>
+    public class BankAccount : CustomNotifyPropertyChanged, ITransaction<BankAccount>, ITopUpBankAccount<double>
     {
         public enum AccountType
         {

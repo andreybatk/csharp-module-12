@@ -3,14 +3,14 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 using CSharpModule12.Infrastructure.Commands;
-using CSharpModule12.Infrastructure;
-using CSharpModule12.Models;
+using CSharpModule12.DAL.Exceptions;
+using CSharpModule12.DAL.Models;
 using CSharpModule12.ViewModels.Base;
 using CSharpModule12.Views.Windows;
 
 namespace CSharpModule12.ViewModels
 {
-    internal class TransactionWindowViewModel : ViewModel
+    public class TransactionWindowViewModel : ViewModel
     {
         public TransactionWindowViewModel(Employee employee, BankAccount bankAccount, TransactionWindow window, ObservableCollection<Client> clients)
         {
