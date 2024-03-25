@@ -1,10 +1,15 @@
-﻿using System.Collections.ObjectModel;
-using static CSharpModule12.DAL.Models.BankAccount;
+﻿using CSharpModule12.DAL.Enums;
+using System.Collections.ObjectModel;
 
 namespace CSharpModule12.DAL.Models
 {
     public class Client : CustomNotifyPropertyChanged
     {
+        private static int _clientId;
+        private int _id;
+        private string _firstName;
+        private string _lastName;
+
         public Client(string firstName, string lastName)
         {
             this.Id = NextId();
@@ -16,11 +21,6 @@ namespace CSharpModule12.DAL.Models
         {
             _clientId = 0;
         }
-       
-        private static int _clientId;
-        private int _id;
-        private string _firstName;
-        private string _lastName;
 
         public int Id { get => _id; private set => Set(ref _id, value); }
         public string FirstName { get => _firstName; private set => Set(ref _firstName, value); }

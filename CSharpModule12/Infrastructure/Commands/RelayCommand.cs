@@ -15,7 +15,6 @@ namespace CSharpModule12.Infrastructure.Commands
         }
 
         public override bool CanExecute(object parameter) => _canExecute?.Invoke(parameter) ?? true;
-
         public override void Execute(object parameter) => _execute(parameter);
     }
 }

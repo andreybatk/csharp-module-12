@@ -8,32 +8,33 @@ namespace CSharpModule12.DAL.Models
 {
     public class Repository<T> where T : class
     {
+        private string _path;
+
         public Repository(string path)
         {
-            this._path = path;
-            this.Clients = new ObservableCollection<T>();
+            _path = path;
+            Clients = new ObservableCollection<T>();
             CheckFileExists();
             Load();
         }
 
-        private string _path;
         public ObservableCollection<T> Clients { get; private set; }
 
         public void Save()
         {
-            string json = JsonConvert.SerializeObject(this.Clients, Formatting.Indented);
+            string json = JsonConvert.SerializeObject(Clients, Formatting.Indented);
             File.WriteAllText(_path, json);
         }
         private void Load()
         {
             string json = File.ReadAllText(_path, Encoding.UTF8);
 
-            if (string.IsNullOrEmpty(json)) 
+            if (string.IsNullOrEmpty(json))
             {
                 return;
             }
 
-            this.Clients = JsonConvert.DeserializeObject<ObservableCollection<T>>(json);
+            Clients = JsonConvert.DeserializeObject<ObservableCollection<T>>(json);
         }
         private void CheckFileExists()
         {

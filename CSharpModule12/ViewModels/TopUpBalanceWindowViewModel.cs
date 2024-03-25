@@ -10,6 +10,11 @@ namespace CSharpModule12.ViewModels
 {
     public class TopUpBalanceWindowViewModel : ViewModel
     {
+        private Employee _employee;
+        private TopUpBalanceWindow _window;
+        private BankAccount _bankAccount;
+        private string _upMoney;
+
         public TopUpBalanceWindowViewModel(Employee employee, BankAccount bankAccount, TopUpBalanceWindow window)
         {
             this._employee = employee;
@@ -18,12 +23,6 @@ namespace CSharpModule12.ViewModels
             this.BankAccountInfo = $"ID: {bankAccount.Id} Баланс: {bankAccount.Money}";
             TopUpYourBalanceCommand = new RelayCommand(OnTopUpYourBalanceExecuted, CanTopUpYourBalanceExecute);
         }
-
-        private Employee _employee;
-        private TopUpBalanceWindow _window;
-        private BankAccount _bankAccount;
-        private string _upMoney;
-
 
         public string UpMoney { get => _upMoney; set => Set(ref _upMoney, value); }
         public string BankAccountInfo { get; set; }
@@ -35,7 +34,7 @@ namespace CSharpModule12.ViewModels
         public ICommand TopUpYourBalanceCommand { get; }
         private bool CanTopUpYourBalanceExecute(object p)
         {
-            if(String.IsNullOrWhiteSpace(UpMoney))
+            if (String.IsNullOrWhiteSpace(UpMoney))
             {
                 return false;
             }
@@ -51,6 +50,5 @@ namespace CSharpModule12.ViewModels
             }
             catch (Exception ex) { MessageBox.Show(ex.Message, "Ошибка!"); }
         }
-
     }
 }

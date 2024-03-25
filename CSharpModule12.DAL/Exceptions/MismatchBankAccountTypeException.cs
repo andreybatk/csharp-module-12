@@ -8,7 +8,6 @@ namespace CSharpModule12.DAL.Exceptions
         public MismatchBankAccountTypeException() : base() { }
         public MismatchBankAccountTypeException(string message) : base(message) { }
         public MismatchBankAccountTypeException(string message, Exception innerException) : base(message, innerException) { }
-        protected MismatchBankAccountTypeException(SerializationInfo info, StreamingContext context) : base (info, context) { }
-
+        protected MismatchBankAccountTypeException(SerializationInfo info, StreamingContext context) : base(info, context) { }
     }
 }

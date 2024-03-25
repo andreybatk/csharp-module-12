@@ -9,6 +9,5 @@ namespace CSharpModule12.DAL.Exceptions
         public InsufficientMoneyException(string message) : base(message) { }
         public InsufficientMoneyException(string message, Exception innerException) : base(message, innerException) { }
         protected InsufficientMoneyException(SerializationInfo info, StreamingContext context) : base(info, context) { }
-
     }
 }

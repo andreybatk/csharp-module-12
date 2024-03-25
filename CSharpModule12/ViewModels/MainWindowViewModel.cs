@@ -11,6 +11,15 @@ namespace CSharpModule12.ViewModels
 {
     public class MainWindowViewModel : ViewModel
     {
+        private Employee _employee { get; set; }
+        private readonly string path = "clients.json";
+        private Client _currentClient;
+        private BankAccount _currentBankAccount;
+        private Repository<Client> _clientsRepository;
+        private ObservableCollection<BankAccount> _bankAccounts;
+        private ObservableCollection<string> _currentChangesInfo;
+        private string _currentBankAccountInfo;
+
         public MainWindowViewModel()
         {
             _clientsRepository = new Repository<Client>(path);
@@ -21,32 +30,18 @@ namespace CSharpModule12.ViewModels
             TransactionCommand = new RelayCommand(OnTransactionExecuted);
 
             _employee = new Manager("Анатолий", "Цой");
-            MainWindowViewModel.OpenOrCloseBankAccountInfo += _employee.TakeChangesInfo;
+            OpenOrCloseBankAccountInfo += _employee.TakeChangesInfo;
             TopUpBalanceWindowViewModel.TopUpYourBalanceInfo += _employee.TakeChangesInfo;
             TransactionWindowViewModel.TransactionInfo += _employee.TakeChangesInfo;
-            //for (int i = 0; i < 20; i++)
-            //{
-            //    Clients.Add(new Client($"Имя_{i}", $"Фамилия_{i}"));
-            //    Clients[i].CreateBankAccounts(2000 * i);
-            //}
-            //_clientsRepository.Save();
         }
-
-        private Employee _employee { get; set; }
-        private readonly string path = "clients.json";
-        private Client _currentClient;
-        private BankAccount _currentBankAccount;
-        private Repository<Client> _clientsRepository;
-        private ObservableCollection<BankAccount> _bankAccounts;
-        private ObservableCollection<string> _currentChangesInfo;
-        private string _currentBankAccountInfo;
 
         public ObservableCollection<string> CurrentChangesInfo { get => _currentChangesInfo; set => Set(ref _currentChangesInfo, value); }
         public ObservableCollection<Client> Clients { get; set; }
         public ObservableCollection<BankAccount> BankAccounts { get => _bankAccounts; set => Set(ref _bankAccounts, value); }
+
         public Client SelectedCurrentClient
         {
-            get 
+            get
             {
                 return _currentClient;
             }
@@ -78,7 +73,7 @@ namespace CSharpModule12.ViewModels
         public ICommand OpenOrCloseBankAccountCommand { get; }
         private bool CanOpenOrCloseBankAccountExecute(object p)
         {
-            if(SelectedCurrentBankAccount != null)
+            if (SelectedCurrentBankAccount != null)
             {
                 return true;
             }
@@ -127,7 +122,7 @@ namespace CSharpModule12.ViewModels
         }
         private void UpdateBankAccounts()
         {
-            if(_currentClient != null)
+            if (_currentClient != null)
             {
                 BankAccounts = SelectedCurrentClient.ClientBankAccounts;
                 SelectedCurrentBankAccount = BankAccounts[0];

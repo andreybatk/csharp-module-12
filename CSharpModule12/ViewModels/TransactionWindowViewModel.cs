@@ -12,6 +12,14 @@ namespace CSharpModule12.ViewModels
 {
     public class TransactionWindowViewModel : ViewModel
     {
+        private Employee _employee;
+        private TransactionWindow _window;
+        private BankAccount _bankAccount;
+        private BankAccount _currentBankAccount;
+        private ObservableCollection<BankAccount> _bankAccounts;
+        private Client _currentClient;
+        private string _upMoney;
+
         public TransactionWindowViewModel(Employee employee, BankAccount bankAccount, TransactionWindow window, ObservableCollection<Client> clients)
         {
             string currentBankAccountType = bankAccount.BankAccountType == 0 ? "Депозитный" : "Недепозитный";
@@ -22,14 +30,6 @@ namespace CSharpModule12.ViewModels
             this.BankAccountInfo = $"ID: {bankAccount.Id} Баланс: {bankAccount.Money} Тип: {currentBankAccountType}";
             TransactionCommand = new RelayCommand(OnTransactionExecuted, CanTransactionExecute);
         }
-
-        private Employee _employee;
-        private TransactionWindow _window;
-        private BankAccount _bankAccount;
-        private BankAccount _currentBankAccount;
-        private ObservableCollection<BankAccount> _bankAccounts;
-        private Client _currentClient;
-        private string _upMoney;
 
         public ObservableCollection<BankAccount> BankAccounts { get => _bankAccounts; set => Set(ref _bankAccounts, value); }
         public ObservableCollection<Client> Clients { get; private set; }

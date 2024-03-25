@@ -1,32 +1,28 @@
 ﻿using CSharpModule12.DAL.Interfaces;
 using CSharpModule12.DAL.Exceptions;
 using Newtonsoft.Json;
+using CSharpModule12.DAL.Enums;
 
 namespace CSharpModule12.DAL.Models
 {
     public class BankAccount : CustomNotifyPropertyChanged, ITransaction<BankAccount>, ITopUpBankAccount<double>
     {
-        public enum AccountType
-        {
-            Deposit = 0,
-            NonDeposit = 1
-        }
+        private double _money;
+        private int _id;
+        private bool _isOpen;
+        private static int _bankAccountId;
+
         public BankAccount(double money, AccountType accountType)
         {
-            this.Money = money;
-            this.Id = NextId();
-            this.IsOpen = true;
+            Money = money;
+            Id = NextId();
+            IsOpen = true;
             this.BankAccountType = accountType;
         }
         static BankAccount()
         {
             _bankAccountId = 0;
         }
-
-        private double _money;
-        private int _id;
-        private bool _isOpen;
-        private static int _bankAccountId;
 
         public double Money { get { return _money; } private set { Set(ref _money, value); } }
         public int Id { get { return _id; } private set { Set(ref _id, value); } }
@@ -44,17 +40,17 @@ namespace CSharpModule12.DAL.Models
         }
         public void MoneyTransfer(BankAccount taken, double money)
         {
-            if(taken.Money < money)
+            if (taken.Money < money)
             {
                 throw new InsufficientMoneyException("Недостаточно средств!");
             }
 
-            if(taken.BankAccountType != this.BankAccountType)
+            if (taken.BankAccountType != BankAccountType)
             {
                 throw new MismatchBankAccountTypeException("Перевод возможен только между одинаковыми типами счетов!");
             }
 
-            this.Money -= money;
+            Money -= money;
             taken.Money += money;
         }
         public void AddMoney(double money)
@@ -62,11 +58,11 @@ namespace CSharpModule12.DAL.Models
             ITopUpBankAccount<double> account = this;
             double balance = account.GetBalance();
             balance += money;
-            this.Money = balance;
+            Money = balance;
         }
         public double GetBalance()
         {
-            return this.Money;
+            return Money;
         }
         private static int NextId()
         {

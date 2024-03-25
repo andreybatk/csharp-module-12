@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\AccountType.cs" />
+    <Compile Include="Enums\EmployeeName.cs" />
     <Compile Include="Exceptions\InsufficientMoneyException.cs" />
     <Compile Include="Exceptions\MismatchBankAccountTypeException.cs" />
     <Compile Include="Interfaces\ITopUpBankAccount.cs" />
